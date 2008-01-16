@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: projects
+#
+#  id              :integer       not null, primary key
+#  title           :string(255)   
+#  description     :text          
+#  user_id         :integer       
+#  created_at      :datetime      
+#  updated_at      :datetime      
+#  slug            :string(255)   
+#  license         :string(255)   
+#  home_url        :string(255)   
+#  mailinglist_url :string(255)   
+#  bugtracker_url  :string(255)   
+#
+
 class Project < ActiveRecord::Base
   acts_as_taggable
   

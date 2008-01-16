@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: ssh_keys
+#
+#  id         :integer       not null, primary key
+#  user_id    :integer       
+#  key        :text          
+#  created_at :datetime      
+#  updated_at :datetime      
+#  ready      :boolean       
+#
+
 class SshKey < ActiveRecord::Base
   belongs_to :user
   

@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id           :integer       not null, primary key
+#  target_class :string(255)   
+#  command      :string(255)   
+#  arguments    :text          
+#  performed    :boolean       
+#  performed_at :datetime      
+#  created_at   :datetime      
+#  updated_at   :datetime      
+#  target_id    :integer       
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 create_repo:
   id: 1

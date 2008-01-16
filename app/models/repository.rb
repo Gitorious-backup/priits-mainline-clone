@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: repositories
+#
+#  id         :integer       not null, primary key
+#  name       :string(255)   
+#  project_id :integer       
+#  user_id    :integer       
+#  created_at :datetime      
+#  updated_at :datetime      
+#  mainline   :boolean       
+#  parent_id  :integer       
+#  ready      :boolean       
+#
+
 class Repository < ActiveRecord::Base
   belongs_to  :user
   belongs_to  :project
