@@ -19,7 +19,7 @@ class Comment < ActiveRecord::Base
   
   attr_protected :user_id
     
-  validates_presence_of :user_id, :repository_id, :body, :project_id
+  validates_presence_of :user_id, :repository_id, :body, :project_id, :sha1
   
   
 end

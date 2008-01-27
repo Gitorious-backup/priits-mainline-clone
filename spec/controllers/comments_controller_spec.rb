@@ -44,8 +44,8 @@ describe CommentsController do
   describe "#create" do
     
     def do_post(opts = {})
-      get :create, :project_id => @project.slug, 
-        :repository_id => @repository.name, :comment => opts
+      post :create, :project_id => @project.slug, :repository_id => @repository.name,
+        :comment => {:sha1 => 'blabla'}.merge(opts)
     end
     
     it "requires login" do
@@ -77,7 +77,7 @@ describe CommentsController do
     
     it "it re-renders on invalid data" do
       login_as :johan
-      do_post :body => nil
+      do_post :body => nil, :sha1 => nil
       response.should be_success
       response.should render_template("comments/new")
     end
