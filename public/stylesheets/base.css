@@ -27,7 +27,7 @@ body {
 	line-height: 1.461em;
   background: #fff;
   color: #000;
-	font-family: Georgia, Times, "Times new Roman", serif;
+  font-family: Georgia, Times, "Times new Roman", serif;
   margin: 0;
   padding: 0;
 }
@@ -65,6 +65,10 @@ p, ul, blockquote, pre, td, th, label {
 	line-height: 1.461em;
 	margin-bottom: 1.461em;
 }
+p, ul, blockquote, td, th, label {
+	font-family: "Bitstream Vera Serif", Georgia, Times, "Times new Roman", serif;
+}
+
 p.small {
 	margin: 0;
 	font-size: 0.846em;
@@ -76,11 +80,11 @@ table {
 	margin-bottom: 1.461em;
 }
 code, pre, tt {
-  font-family: monospace;
-  line-height: 90%;
+  font: 95%/105%  "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
 }
 a {
-  color: #630;
+/*  color: #630;*/
+  color: #811E00;
   text-decoration: none;
 }
 a:hover {
@@ -232,23 +236,27 @@ abbr {
 
 #menu ul li a:hover {
   text-decoration: none;
-  border-bottom: 3px solid #630;
+  border-bottom: 4px solid #630;
 }
 
 /* submenu */
 #submenu {
   margin-bottom: 1.5em;
+  margin-top: 2px;
+  border-top: 1px dotted #666;
   border-bottom: 1px solid #ccc;
+  font-size: 90%;
+  min-height: 2px;
 }
 #submenu ul {
   list-style: none;
-  padding: 2px 0 2px 0;
+  padding: 2px 0 1px 0;
   margin: 0 0 0 2em;
 }
 
 #submenu ul li {
   display: inline;
-  margin-right: 30px;
+  margin-right: 20px;
 }
 
 #submenu ul li a { 
@@ -257,7 +265,7 @@ abbr {
 
 #submenu ul li a:hover {
   text-decoration: none;
-  border-bottom: 2px solid #630;
+  border-bottom: 3px solid #630;
 }
 
 /* Forms */
@@ -461,10 +469,10 @@ ul.tag_list li {
 .tag_size_3 { font-size: 1.4em; }
 .tag_size_4 { font-size: 1.6em; }
 
-.large_tags .tag_size_1 { font-size: 1.5em; }
-.large_tags .tag_size_2 { font-size: 1.8em; }
-.large_tags .tag_size_3 { font-size: 2.2em; }
-.large_tags .tag_size_4 { font-size: 2.5em; }
+.large_tags .tag_size_1 { font-size: 1.0em; }
+.large_tags .tag_size_2 { font-size: 1.3em; }
+.large_tags .tag_size_3 { font-size: 1.6em; }
+.large_tags .tag_size_4 { font-size: 1.9em; }
 
 /* "un-ready" objects */
 
@@ -547,10 +555,10 @@ table.tree tr td.tree a { background-image: url("/images/folder_grey.png"); }
 
 #site_intro {
   width: 65%;
-  margin: 2em auto 4em auto;
+  margin: 2em auto 2em auto;
   font-size: 1.5em;
 }
-#site_project_list {
+#site_project_list .tag_list{
   text-align: center;
 }
 
@@ -590,15 +598,31 @@ div.comment p.byline {
   color: #666;
   font-size: 90%;
 }
+small.hint { font-size: 83%;}
+
+.info_hint {
+  font-size: 95%;
+  color: #666;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 1px dotted #888;
+  border-bottom: 1px dotted #888;
+}
+
+.info_hint pre {
+  margin-bottom: 5px;
+}
 
 /* diff mode selector */
-ul.diffmode_selector { float: right; }
-ul.diffmode_selector li {
+ul.mode_selector { float: right;}
+ul.mode_selector li {
   display:inline;
   margin-left: 1em;
 }
-ul.diffmode_selector li.list_header { font-weight: bold; }
-ul.diffmode_selector li.selected    { border-bottom: 1px solid #666; }
+ul.mode_selector li.list_header { font-weight: bold; }
+ul.mode_selector li.selected    { border-bottom: 1px solid #666; }
 
 /* Diff rendering */ 
 
@@ -611,8 +635,9 @@ table tr .line-numbers {
  vertical-align: top;
  background: #eee;
  color: #555;
- font-size: 10px;  
+ font-size: 90%;  
  padding: 2px;
+ padding-top: 0;
  width: 35px;
  border-right: 1px solid #ccc;
  border-bottom: 1px solid #ddd;
@@ -620,9 +645,30 @@ table tr .line-numbers {
 table tr td.code {
  width: 95%;
  padding-left: 10px;
- white-space: pre;
+ /*white-space: pre;*/
+ white-space: pre-wrap;       /* CSS-3                  */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999    */
+ white-space: -pre-wrap;      /* Opera 4-6              */
+ white-space: -o-pre-wrap;    /* Opera 7                */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
  background: #fff;
- font: 100%/110%  "Courier New", Courier, monaco, monospace;
+ font: 95%/110% "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+}
+
+table tr td.unwrapped {
+ white-space: pre;
+}
+
+table tr td.softwrapped {
+  white-space: pre-wrap;       /* CSS-3                  */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999    */
+  white-space: -pre-wrap;      /* Opera 4-6              */
+  white-space: -o-pre-wrap;    /* Opera 7                */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+table tr td.highlighted {
+  background: #ffc;
 }
 
 table.sidebyside {
@@ -631,14 +677,14 @@ table.sidebyside {
 }
 table.sidebyside tr td.code {
   white-space: normal;
+  padding: 2px;
 }
 
 table.codediff {
   border: 1px solid #ccc;
   width: 100%;
   border-collapse: collapse;
-  font-family: monospace;
-  line-height: 90%;
+  font: 95%/105% "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
 }
 table.codediff .line-num-cut { 
   background: #ccc; 
@@ -665,4 +711,39 @@ table.sidebyside td.del del { background: #fbb; }
 table.sidebyside td.ins ins { background: #afa; }
 table.codediff col.lines {
   width: 3em;
+}
+
+#newest_projects, #site_project_list {
+  margin-bottom: 3em;
+}
+
+#newest_projects ul li {
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+#site_overview {
+  text-align: center;
+  margin-bottom: 4em;
+}
+
+#site_overview p.create_account_hint {
+  margin-top: 1.5em;
+}
+
+
+#site #recent_comments {
+  width: 48%;
+  float: left;
+  padding-right: 10px;
+  border-right: 1px dotted #dedede;
+}
+
+#site #recent_comments .comment .body {
+  font-size: 90%;
+}
+
+#site #clone_list {
+  width: 49%;
+  float: right;
 }

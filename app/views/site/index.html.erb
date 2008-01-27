@@ -5,8 +5,30 @@
   <small><%= link_to "more…", about_path -%></small></p>
 </div>
 
+<div id="site_overview">
+  <%= image_tag("overview.png") -%>
+  <% unless logged_in? -%>
+  <p class="hint create_account_hint">
+    <%= link_to "Creating a user account", new_user_path -%> allows you to create 
+    your own project or participate in the development of any project. 
+  </p>
+  <% end -%>
+</div>
+
+<div id="newest_projects">
+  <h2>Newest projects</h2>
+  <ul>
+    <% @projects.each do |project| -%>
+      <li>
+        <strong><%= link_to h(project.title), project -%></strong>
+        <small class="hint"><%= truncate(project.description, 100) -%></small>
+      </li>
+    <% end -%>
+  </ul>
+</div>
+
 <div id="site_project_list">
-  <h1>Project categories</h1>
+  <h2>Project categories</h2>
 
   <ul class="tag_list large_tags">
     <% tag_cloud @tags, default_css_tag_sizes do |tag, css_class| %>
@@ -14,12 +36,3 @@
     <% end %>
   </ul>
 </div>
-
-<% content_for :sidebar do -%>
-<% unless logged_in? -%>
-<p class="hint">
-  <%= link_to "Creating a user account", new_user_path -%> will allows you to create 
-  your own project or participate in the development of any project. 
-</p>
-<% end -%>
-<% end -%>

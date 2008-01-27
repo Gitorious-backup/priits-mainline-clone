@@ -17,13 +17,14 @@ ActionController::Routing::Routes.draw do |map|
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
   #map.connect ':controller/service.wsdl', :action => 'wsdl'
-  VALID_SHA = /([a-z0-9]{40}|HEAD)/
+  VALID_SHA = /[a-zA-Z0-9~\{\}\^\.]+/
   map.root :controller => "site", :action => "index"
   
   map.resource :account, :member => {:password => :get, :update_password => :put} do |account|
     account.resources :keys
   end
-  map.resources :users 
+  map.connect "users/activate/:activation_code", :controller => "users", :action => "activate"
+  map.resources :users, :requirements => {:id => /.+/}
   map.resource  :sessions
   map.with_options(:controller => "projects", :action => "category") do |project_cat|
     project_cat.projects_category "projects/category/:id"
@@ -61,10 +62,10 @@ ActionController::Routing::Routes.draw do |map|
     session.login    '/login',  :action => 'new'
     session.logout   '/logout', :action => 'destroy'
   end
-  
-  map.connect "users/activate/:activation_code", :controller => "users", :action => "activate"
-  
+
+  map.dashboard "dashboard", :controller => "site", :action => "dashboard"  
   map.about "about", :controller => "site", :action => "about"
+  map.faq "about/faq", :controller => "site", :action => "faq"
 
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id.:format'

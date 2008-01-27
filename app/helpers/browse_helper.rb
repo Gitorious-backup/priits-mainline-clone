@@ -99,7 +99,7 @@ module BrowseHelper
   end
   
   def render_diffmode_selector
-    out = %Q{<ul class="diffmode_selector">}
+    out = %Q{<ul class="mode_selector">}
     out << %Q{<li class="list_header">Diff rendering mode:</li>}
     if @diffmode == "sidebyside"
       out << %Q{<li><a href="?diffmode=inline">inline</a></li>}
@@ -110,6 +110,22 @@ module BrowseHelper
     end      
     out << "</ul>"
     out
+  end
+  
+  def with_line_numbers(&block)
+    out = []
+    #yield.split("\n").each_with_index{ |s,i| out << "#{i+1}: #{s}" }
+    out << %Q{<table id="codeblob">}
+    yield.to_s.split("\n").each_with_index do |line, count|
+      lineno = count + 1
+      out << %Q{<tr id="line#{lineno}">}
+      out << %Q{<td class="line-numbers"><a href="#line#{lineno}" name="line#{lineno}">#{lineno}</a></td>} 
+      out << %Q{<td class="code">#{line}</td>}
+      out << "</tr>"
+    end
+    out << "</table>"
+    out.join("\n")
+    
   end
   
 end
