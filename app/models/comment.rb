@@ -9,6 +9,7 @@
 #  body          :text          
 #  created_at    :datetime      
 #  updated_at    :datetime      
+#  project_id    :integer       
 #
 
 class Comment < ActiveRecord::Base

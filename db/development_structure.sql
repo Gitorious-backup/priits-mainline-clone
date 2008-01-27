@@ -32,7 +32,8 @@ CREATE TABLE comments (
     sha1 character varying(255) NOT NULL,
     body text,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    project_id integer
 );
 
 
@@ -478,6 +479,13 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: index_comments_on_project_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_comments_on_project_id ON comments USING btree (project_id);
+
+
+--
 -- Name: index_comments_on_repository_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -628,4 +636,4 @@ CREATE INDEX index_users_on_ssh_key_id ON users USING btree (ssh_key_id);
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO schema_info (version) VALUES (19)
+INSERT INTO schema_info (version) VALUES (20)
